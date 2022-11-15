@@ -1,0 +1,76 @@
+<form class="add-form" (ngSubmit)="onSubmit()" #addTaskForm="ngForm">
+  <div class="form-control">
+    <label for="text">Task</label>
+    <input
+      type="text"
+      name="text"
+      required
+      minlength="4"
+      [(ngModel)]="model.text"
+      id="text"
+      #text="ngModel"
+      placeholder="Add Task"
+    />
+    <div [hidden]="text.valid || text.pristine">
+      <div
+        *ngIf="text.errors && text.errors['minlength']"
+        class="alert alert-danger"
+      >
+        Text must be at least 4 characters
+      </div>
+      <div
+        *ngIf="
+          (text.valid || text.pristine) &&
+          text.errors &&
+          text.errors['required']
+        "
+        class="alert alert-danger"
+      >
+        Text is required
+      </div>
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="day">Day & Time</label>
+    <input
+      type="text"
+      name="day"
+      id="day"
+      required
+      minlength="4"
+      [(ngModel)]="model.day"
+      placeholder="Add Day & Time"
+      #day="ngModel"
+    />
+    <div [hidden]="day.valid || day.pristine">
+      <div
+        *ngIf="day.errors && day.errors['minlength']"
+        class="alert alert-danger"
+      >
+        Day must be at least 4 characters
+      </div>
+      <div
+        *ngIf="day.errors && day.errors['required']"
+        class="alert alert-danger"
+      >
+        Day is required
+      </div>
+    </div>
+  </div>
+  <div class="form-control form-control-check">
+    <label for="reminder">Set Reminder</label>
+    <input
+      type="checkbox"
+      name="reminder"
+      id="reminder"
+      [(ngModel)]="model.reminder"
+      #reminder="ngModel"
+    />
+  </div>
+  <input
+    type="submit"
+    value="Save Task"
+    class="btn btn-block"
+    [disabled]="!addTaskForm.form.valid"
+  />
+</form>
