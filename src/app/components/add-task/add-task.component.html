@@ -1,6 +1,6 @@
 <form class="add-form" (ngSubmit)="onSubmit()" #addTaskForm="ngForm">
   <div class="form-control">
-    <label for="text">Task</label>
+    <label for="text" i18n>Task</label>
     <input
       type="text"
       name="text"
@@ -14,24 +14,25 @@
     <div [hidden]="text.valid || text.pristine">
       <div
         *ngIf="text.errors && text.errors['minlength']"
+        i18n
         class="alert alert-danger"
       >
         Text must be at least 4 characters
       </div>
       <div
         *ngIf="
-          (text.valid || text.pristine) &&
           text.errors &&
           text.errors['required']
         "
         class="alert alert-danger"
+        i18n
       >
         Text is required
       </div>
     </div>
   </div>
   <div class="form-control">
-    <label for="day">Day & Time</label>
+    <label for="day" i18n>Day & Time</label>
     <input
       type="text"
       name="day"
@@ -46,19 +47,21 @@
       <div
         *ngIf="day.errors && day.errors['minlength']"
         class="alert alert-danger"
+        i18n
       >
         Day must be at least 4 characters
       </div>
       <div
         *ngIf="day.errors && day.errors['required']"
         class="alert alert-danger"
+        i18n
       >
         Day is required
       </div>
     </div>
   </div>
   <div class="form-control form-control-check">
-    <label for="reminder">Set Reminder</label>
+    <label for="reminder" i18n>Set Reminder</label>
     <input
       type="checkbox"
       name="reminder"

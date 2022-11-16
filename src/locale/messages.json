@@ -1,0 +1,16 @@
+{
+  "locale": "en-US",
+  "translations": {
+    "6015045898705137626": "Task Tracker",
+    "7949201304293814371": "Version: 1.0.0",
+    "734934965373819800": "Go back",
+    "4578192247039196794": "Task",
+    "8847540416436939726": " Text must be at least 4 characters ",
+    "410882043320090302": " Text is required ",
+    "1033132691426528328": "Day & Time",
+    "8674673105930331615": " Day must be at least 4 characters ",
+    "7651550019579710042": " Day is required ",
+    "5840849327550298736": "Set Reminder",
+    "1726363342938046830": "About"
+  }
+}

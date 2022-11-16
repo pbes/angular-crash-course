@@ -28,6 +28,11 @@
             "scripts": []
           },
           "configurations": {
+            "hu": {
+              "localize": [
+                "hu"
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -68,6 +73,9 @@
             },
             "development": {
               "browserTarget": "angular-crash:build:development"
+            },
+            "hu": {
+              "browserTarget": "angular-crash:build:development,hu"
             }
           },
           "defaultConfiguration": "development"
@@ -93,6 +101,14 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        }
+      },
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "hu": {
+            "translation": "src/locale/messages.hu.json"
           }
         }
       }

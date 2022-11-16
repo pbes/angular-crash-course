@@ -14,6 +14,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { ExamplePipe } from './example.pipe';
 import { HighlightDirective } from './highlight.directive';
+import { StoreModule } from '@ngrx/store';
+import { taskReducer } from './state/task/task.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './state/task/task.effects';
+import { GetErrorMessagePipe } from './get-error-message.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: TasksComponent },
@@ -30,14 +35,17 @@ const appRoutes: Routes = [
     AddTaskComponent,
     FooterComponent,
     ExamplePipe,
-    HighlightDirective
+    HighlightDirective,
+    GetErrorMessagePipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    StoreModule.forRoot({ tasks: taskReducer }),
+    EffectsModule.forRoot([TodoEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

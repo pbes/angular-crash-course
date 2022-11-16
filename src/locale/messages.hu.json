@@ -1,0 +1,16 @@
+{
+  "locale": "hu",
+  "translations": {
+    "6015045898705137626": "Task Tracker",
+    "7949201304293814371": "Verzió: 1.0.0",
+    "734934965373819800": "Vissza a főoldalra",
+    "4578192247039196794": "Feladat",
+    "8847540416436939726": "A feladat nevének legalább 4 karakteresnek kell lennie.",
+    "410882043320090302": "Kötelező mező",
+    "1033132691426528328": "Időpont",
+    "8674673105930331615": "Az időpontnak legalább 4 karakteresnek kell lennie.",
+    "7651550019579710042": "Kötelező mező",
+    "5840849327550298736": "Emlékeztető beállítása",
+    "1726363342938046830": "Információ"
+  }
+}

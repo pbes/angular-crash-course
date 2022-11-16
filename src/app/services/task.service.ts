@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Task } from '../api/Task';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -21,16 +21,17 @@ export class TaskService {
     return this.httpClient.get<Task[]>(this.apiUrl);
   }
 
-  deleteTask(task: Task): Observable<Task> {
-    return this.httpClient.delete<Task>(`${this.apiUrl}/${task.id}`);
+  deleteTask(taskId: number): Observable<Task> {
+    return this.httpClient.delete<Task>(`${this.apiUrl}/${taskId}`);
   }
 
   toggleReminder(task: Task): Observable<Task> {
-    task.reminder = !task.reminder;
-    return this.httpClient.put<Task>(`${this.apiUrl}/${task.id}`, task, options);
+    const updatedTask = { ...task, reminder: !task.reminder };
+    return this.httpClient.put<Task>(`${this.apiUrl}/${task.id}`, updatedTask, options);
   }
 
   addNewTask(task: Task): Observable<Task> {
+    console.log('adding task');
     return this.httpClient.post<Task>(`${this.apiUrl}`, task, options);
   }
 }

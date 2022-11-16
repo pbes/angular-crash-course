@@ -1,4 +1,6 @@
 <app-add-task *ngIf="showAddTask$ | async" (onAddTask)="onAddTask($event)"></app-add-task>
+{{ error$ | async | getErrorMessage }}
+<div *ngIf="loading$ | async">Loading...</div>
 <app-task-item
   *ngFor="let task of tasks$ | async"
   [task]="task"

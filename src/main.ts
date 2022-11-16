@@ -12,4 +12,5 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 
+// TODO translations with custom translation loader (DB?)
 // TODO NgRx store with actions and effects

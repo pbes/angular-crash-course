@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { TaskService } from 'src/app/services/task.service';
 import { UiService } from 'src/app/services/ui.service';
+import { AppState } from 'src/app/state/app.state';
+import { addTask, deleteTask, loadTasks, toggleReminder } from 'src/app/state/task/task.actions';
+import { error, selectAllTasks, loading } from 'src/app/state/task/task.selector';
 import { Task } from '../../api/Task';
 
 @Component({
@@ -10,38 +13,32 @@ import { Task } from '../../api/Task';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  tasks$: Observable<Task[]> | undefined;
-  showAddTask$: Observable<boolean>;
+  tasks$ = this.store.select(selectAllTasks);
+  error$ = this.store.select(error);
+  loading$ = this.store.select(loading);
+  showAddTask$: Observable<boolean> = this.uiService.onToggle();
 
-  constructor(private taskService: TaskService, private uiService: UiService) {
-    this.showAddTask$ = this.uiService.onToggle();
+  constructor(private uiService: UiService, private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    this.showAddTask$ = this.uiService.onToggle();
     this.refreshTasks();
   }
 
   private refreshTasks() {
-    this.tasks$ = this.taskService.getTasks();
+    this.store.dispatch(loadTasks());
   }
 
   deleteTask(task: Task) {
-    this.taskService.deleteTask(task).subscribe(() => {
-      this.refreshTasks();
-    });
+    this.store.dispatch(deleteTask({ id: task.id! }));
   }
 
   toggleReminder(task: Task) {
-    this.taskService.toggleReminder(task).subscribe(() => {
-      console.log('toggle reminder');
-    });
+    this.store.dispatch(toggleReminder({ task: task }));
   }
 
   onAddTask(task: Task) {
-    this.taskService.addNewTask(task).subscribe(() => {
-      this.refreshTasks();
-    });
+    this.store.dispatch(addTask({ task }));
     this.uiService.toggleAddTask();
   }
 
