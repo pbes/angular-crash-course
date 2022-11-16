@@ -17,7 +17,7 @@ import { HighlightDirective } from './highlight.directive';
 import { StoreModule } from '@ngrx/store';
 import { taskReducer } from './state/task/task.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { TodoEffects } from './state/task/task.effects';
+import { TaskEffects } from './state/task/task.effects';
 import { GetErrorMessagePipe } from './get-error-message.pipe';
 
 const appRoutes: Routes = [
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({ tasks: taskReducer }),
-    EffectsModule.forRoot([TodoEffects])
+    EffectsModule.forRoot([TaskEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

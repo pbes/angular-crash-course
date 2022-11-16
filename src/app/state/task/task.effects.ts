@@ -10,25 +10,23 @@ import {
 } from './task.actions';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { AppState } from '../app.state';
 import { TaskService } from 'src/app/services/task.service';
 
 @Injectable()
-export class TodoEffects {
+export class TaskEffects {
   constructor(
     private actions$: Actions,
     private taskService: TaskService
   ) {}
 
-  // Run this code when a loadTodos action is dispatched
+  // Run this code when a loadTasks action is dispatched
   loadTasks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadTasks),
       switchMap(() =>
-        // Call the getTodos method, get observable
+        // Call the getTasks method, get observable
         this.taskService.getTasks().pipe(
-          // Take the returned value and return a new success action containing the todos
+          // Take the returned value and return a new success action containing the tasks
           map((tasks) => loadTasksSuccess({ tasks: tasks })),
           // Or... if it errors return a new failure action containing the error
           catchError((error) => of(loadTasksFailure({ error })))
